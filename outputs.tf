@@ -42,3 +42,12 @@ output "nat_gw_2_id" {
   description = "ID of NAT Gateway 2"
   value       = module.nat_gateway.nat_gw_2_id
 }
+output "web_alb_dns" {
+  description = "DNS name of the public web ALB - use this to access the app"
+  value       = module.alb.web_alb_dns
+}
+
+output "app_alb_dns" {
+  description = "DNS name of the internal app ALB"
+  value       = module.alb.app_alb_dns
+}

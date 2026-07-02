@@ -58,3 +58,14 @@ module "security_groups" {
   vpc_id       = module.vpc.vpc_id
   project_name = var.project_name
 }
+module "alb" {
+  source                  = "./modules/alb"
+  vpc_id                  = module.vpc.vpc_id
+  project_name            = var.project_name
+  alb_web_sg_id           = module.security_groups.alb_web_sg_id
+  alb_app_sg_id           = module.security_groups.alb_app_sg_id
+  public_subnet_1_id      = module.subnets.public_subnet_1_id
+  public_subnet_2_id      = module.subnets.public_subnet_2_id
+  private_app_subnet_1_id = module.subnets.private_app_subnet_1_id
+  private_app_subnet_2_id = module.subnets.private_app_subnet_2_id
+}
