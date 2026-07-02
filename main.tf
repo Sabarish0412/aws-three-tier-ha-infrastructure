@@ -53,3 +53,8 @@ module "route_tables" {
   private_db_subnet_1_id  = module.subnets.private_db_subnet_1_id
   private_db_subnet_2_id  = module.subnets.private_db_subnet_2_id
 }
+module "security_groups" {
+  source       = "./modules/security_groups"
+  vpc_id       = module.vpc.vpc_id
+  project_name = var.project_name
+}
