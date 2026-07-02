@@ -69,3 +69,15 @@ module "alb" {
   private_app_subnet_1_id = module.subnets.private_app_subnet_1_id
   private_app_subnet_2_id = module.subnets.private_app_subnet_2_id
 }
+module "asg" {
+  source                  = "./modules/asg"
+  project_name            = var.project_name
+  web_sg_id               = module.security_groups.web_sg_id
+  app_sg_id               = module.security_groups.app_sg_id
+  public_subnet_1_id      = module.subnets.public_subnet_1_id
+  public_subnet_2_id      = module.subnets.public_subnet_2_id
+  private_app_subnet_1_id = module.subnets.private_app_subnet_1_id
+  private_app_subnet_2_id = module.subnets.private_app_subnet_2_id
+  web_target_group_arn    = module.alb.web_target_group_arn
+  app_target_group_arn    = module.alb.app_target_group_arn
+}
