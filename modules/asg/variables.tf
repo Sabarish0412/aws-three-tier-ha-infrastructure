@@ -1,3 +1,7 @@
+variable "ami_id" {
+  description = "AMI ID for EC2 instances (Amazon Linux 2023)"
+  type        = string
+}
 variable "project_name" {
   description = "Project name used as a prefix for resource naming"
   type        = string

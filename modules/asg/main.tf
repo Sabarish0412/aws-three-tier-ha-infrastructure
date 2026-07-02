@@ -1,23 +1,7 @@
-# Fetch latest Amazon Linux 2023 AMI
-data "aws_ami" "amazon_linux_2023" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami-*-x86_64"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
 # Launch Template for Web Tier
 resource "aws_launch_template" "web" {
   name_prefix   = "${var.project_name}-web-lt-"
-  image_id      = data.aws_ami.amazon_linux_2023.id
+  image_id      = var.ami_id
   instance_type = "t2.micro"
 
   network_interfaces {
@@ -62,7 +46,7 @@ resource "aws_autoscaling_group" "web" {
 # Launch Template for App Tier
 resource "aws_launch_template" "app" {
   name_prefix   = "${var.project_name}-app-lt-"
-  image_id      = data.aws_ami.amazon_linux_2023.id
+  image_id      = var.ami_id
   instance_type = "t2.micro"
 
   network_interfaces {
