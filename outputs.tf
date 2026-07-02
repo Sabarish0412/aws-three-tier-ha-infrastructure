@@ -51,3 +51,7 @@ output "app_alb_dns" {
   description = "DNS name of the internal app ALB"
   value       = module.alb.app_alb_dns
 }
+output "rds_endpoint" {
+  description = "RDS connection endpoint"
+  value       = module.rds.rds_endpoint
+}

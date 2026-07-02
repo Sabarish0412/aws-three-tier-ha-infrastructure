@@ -55,3 +55,13 @@ variable "bastion_public_key" {
   description = "Public key material for the bastion SSH key pair"
   type        = string
 }
+variable "db_username" {
+  description = "Master username for RDS"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Master password for RDS"
+  type        = string
+  sensitive   = true
+}

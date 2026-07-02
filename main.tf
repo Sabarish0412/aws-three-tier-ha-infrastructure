@@ -109,3 +109,12 @@ module "bastion" {
   bastion_sg_id      = module.security_groups.bastion_sg_id
   bastion_public_key = var.bastion_public_key
 }
+module "rds" {
+  source                 = "./modules/rds"
+  project_name           = var.project_name
+  private_db_subnet_1_id = module.subnets.private_db_subnet_1_id
+  private_db_subnet_2_id = module.subnets.private_db_subnet_2_id
+  db_sg_id               = module.security_groups.db_sg_id
+  db_username            = var.db_username
+  db_password            = var.db_password
+}
